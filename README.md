@@ -26,6 +26,7 @@ This Python routine creates data transformation wrappers around [GWGEN](https://
 Specifically, the package analyzes monthly climatology to determine a baseline for a user-defined change in one of the climate variables (e.g., precipitation) and generates weather for a season similar to baseline climatology.
 
 ## <a name = "version">Version Information</a>
+- v0.0.2: Fix bug in lats/lons due to np.arange spacing.
 - v0.0.1: Support built for FLDAS datasets. Cloud cover is assumed to be 0.5 (50%) since it is not return by FLDAS.
 
 ## <a name = "quickstart">Quickstart Guide</a>

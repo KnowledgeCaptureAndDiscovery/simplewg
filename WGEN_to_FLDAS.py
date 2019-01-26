@@ -47,12 +47,12 @@ def csv_to_FLDAS(wgen_out, wgen_in, path_out, file_prefix):
     step = 0.1
     lats = np.arange(min_lat,max_lat,step)
     # carefully handle the end
-    if abs(max_lat-lats[-1])>step:
+    if abs(max_lat-lats[-1])>0.000001:
         lats = np.append(lats,max_lat)
     lons = np.arange(min_lon,max_lon,step)
     # carefully handle the end
-    if abs(max_lon-lons[-1])>step:
-        lons = np.append(lons,max_lat)
+    if abs(max_lon-lons[-1])>0.000001:
+        lons = np.append(lons,max_lon)
     
     # Add latitude/longitude to data_out
     data_out['lat'] =np.nan
@@ -143,9 +143,9 @@ def csv_to_FLDAS(wgen_out, wgen_in, path_out, file_prefix):
         nc_fid.to_netcdf(path)
         
 #%% Execute  
-wgen_out = sys.argv[1] #'/Users/deborahkhider/Documents/GitHub/simplewg/WGEN_out.csv'
-wgen_in = sys.argv[2] #'/Users/deborahkhider/Documents/GitHub/simplewg/FLDAS_WGEN.csv'
-path_out = sys.argv[3] #'/Users/deborahkhider/Documents/MINT/Climate/Scenarios/FLDAS_WGEN'
-file_prefix = sys.argv[4] #'FLDAS_NOAH01_A_EA_D.A' 
+wgen_out = sys.argv[1] #wgen_out = '/Users/deborahkhider/Documents/GitHub/simplewg/WGEN_out.csv'
+wgen_in = sys.argv[2] #wgen_in = '/Users/deborahkhider/Documents/GitHub/simplewg/FLDAS_WGEN.csv'
+path_out = sys.argv[3] #path_out = '/Users/deborahkhider/Documents/MINT/Climate/Scenarios/FLDAS_WGEN'
+file_prefix = sys.argv[4] #file_prefix = 'FLDAS_NOAH01_A_EA_D.A' 
 
 csv_to_FLDAS(wgen_out, wgen_in, path_out, file_prefix)       
