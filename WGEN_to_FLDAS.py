@@ -107,6 +107,16 @@ def csv_to_FLDAS(wgen_out, wgen_in, path_out, file_prefix):
                                      'vmax':np.max(W),
                                      'cell_methods':'time:mean'})
         
+        X_attr = {'standard_name':'longitude',
+                  'long_name':'longitude',
+                  'axis':'X',
+                  'units':'degrees_east'}
+    
+        Y_attr = {'standard_name':'latitude',
+                  'long_name':'latitude',
+                  'axis':'Y',
+                  'units':'degrees_north'}
+        
         # Create the dataset
         nc_fid = xr.Dataset(data_vars = {'Tair_f_tavg': temp,
                                          'Wind_f_tavg':wind,
@@ -115,6 +125,9 @@ def csv_to_FLDAS(wgen_out, wgen_in, path_out, file_prefix):
                                      'missing_value':-9999.0,
                                      'title': 'WGEN output',
                                      'comment': 'Outputs generated from WGEN'}) 
+        
+        nc_fid.X.attrs.update(X_attr)
+        nc_fid.Y.attrs.update(Y_attr)
         
         # save the file  
         # Create the year directory if needed
